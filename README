@@ -1,0 +1,10 @@
+xmlInjectUids.pl README
+
+Please see the inline comments for a detailed explanation of the logic.
+
+The script parses a given XSD file, and an accompanying, conforming XML file. If any processor instructions are found in the XSD file, then XML elements of the types flagged are identified, and are given an attribute that stores their enumerated uid.
+
+The purpose of this is to allow the design of data in an object-oriented manner (XML), but then to store the static data in a data-oriented manner at run-time. The linkage is maintained through the uid attribute of XML elements. At run-time, these uids can be used to access data structures indexed by them (e.g. an array).
+
+The files in this repository were created using the following command:
+xmlInjectUids.pl --xsdIn ./in/huscarlasGameXml.xsd --xmlIn ./in/huscarlasGameConfig.xml --xmlOut ./out/huscarlasGameConfig.xml
