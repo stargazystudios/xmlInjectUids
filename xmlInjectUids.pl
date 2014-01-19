@@ -26,7 +26,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #xmlInjectUids will search an input XSD schema for Types with Processing Instruction named 
-# with a specified keyword (default 'uid'). Elements of these identified Types are then 
+# with a specified keyword (default 'uidGenerator'). Elements of these flagged Types are then 
 #found in the schema, and their names stored. The input XML file is then parsed to find 
 #elements with these names, count them, and give each a uid. The uids are injected it into
 # the existing data structure in an attribute named with a given keyword. The data 
