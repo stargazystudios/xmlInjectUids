@@ -109,14 +109,14 @@ sub searchElements{
 }
 
 my $xsdIn = '';
-my $uidGeneratorPI = 'uidGenerator'; #keyword to denote uid Processing Instruction
+my $piName = 'uidGenerator'; #keyword to denote uid Processing Instruction
 
 my $xmlIn = '';
 my $uidKey = 'uid'; #keyword to name uid field that needs generating in a Type
-my $xmlOut = 'xmlInjectUids.out.xml';
+my $xmlOut = '';
 
 GetOptions(	'xsdIn=s' => \$xsdIn,
-			'uidGeneratorPI=s' => \$uidGeneratorPI,
+			'piName=s' => \$piName,
 			'uidKey=s' => \$uidKey,
 			'xmlIn=s' => \$xmlIn,
 			'xmlOut=s' => \$xmlOut);
@@ -131,7 +131,7 @@ if($xsdIn && $xmlIn ){
 		my %uidTypes;
 		
 		#iterate through all complexTypes in the schema
-		foreach my $type ($xmlData->findnodes('/xs:schema/xs:complexType[processing-instruction("'.$uidGeneratorPI.'")]')){
+		foreach my $type ($xmlData->findnodes('/xs:schema/xs:complexType[processing-instruction("'.$piName.'")]')){
 			if($type->hasAttribute("name")){
 				$uidTypes{$type->getAttribute("name")} = 0;
 			}
@@ -170,6 +170,7 @@ if($xsdIn && $xmlIn ){
 			#print Dumper($uidElementsHashRef);
 			
 			#output XMLData to file
+			if(!$xmlOut){$xmlOut = $xmlIn;} #default override xmlIn if not xmlOut set
 			$xmlData->toFile($xmlOut);
 		}
 		else{print STDERR "xmlIn($xmlIn) is not a valid xml file. EXIT\n";}
