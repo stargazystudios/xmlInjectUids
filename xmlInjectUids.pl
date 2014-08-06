@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 
 #Copyright (c) 2012, Stargazy Studios
 #All Rights Reserved
@@ -46,6 +46,7 @@
 #Element. The name of the Attribute to store the count in can either be a variation on the
 # Element name, or its Type.
 
+use warnings;
 use strict;
 use Getopt::Long;
 use XML::LibXML;
